@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "GENERATE proclaimer PWA ASSETS": "npx pwa-asset-generator src/apps/proclaimer/app/logo.svg src/apps/proclaimer/public/assets --background $(grep -Po '^VITE_APP_SPLASH_SCREEN_COLOR=\\K.*' .env  ) --favicon true --padding '10%'"
   },
   "dependencies": {
     "pwa-asset-generator": "^6.2.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "vite-plugin-html": "^3.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
@@ -21,6 +23,7 @@
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7",
     "typescript": "^4.9.3",
-    "vite": "^4.1.0"
+    "vite": "^4.1.0",
+    "vite-plugin-pwa": "^0.14.1"
   }
 }
