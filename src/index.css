@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 html {
-  overscroll-behavior: contain;
 }
 body {
-  overscroll-behavior: contain;
 }
