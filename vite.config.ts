@@ -7,6 +7,9 @@ export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
   return defineConfig({
+    build: {
+      outDir: "docs",
+    },
     publicDir: `src/apps/proclaimer/public`,
     plugins: [
       react(),
