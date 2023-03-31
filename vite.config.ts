@@ -7,7 +7,7 @@ export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
   return defineConfig({
-    base:"/Latest/",
+    base: `/${process.env.VITE_APP_NAME}/`,
     build: {
       outDir: "docs",
     },
