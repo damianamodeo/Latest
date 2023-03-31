@@ -7,7 +7,7 @@
     "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "GENERATE proclaimer PWA ASSETS": "npx pwa-asset-generator src/apps/proclaimer/app/logo.svg src/apps/proclaimer/public/assets --background $(grep -Po '^VITE_APP_SPLASH_SCREEN_COLOR=\\K.*' .env  ) --favicon true --padding '10%'"
+    "generate-PROCLAIMER-pwa-assets": "npx pwa-asset-generator src/apps/proclaimer/app/logo.svg src/apps/proclaimer/public/assets --background $(grep -Po '^VITE_APP_SPLASH_SCREEN_COLOR=\\K.*' .env  ) --favicon true --padding '10%'"
   },
   "dependencies": {
     "framer-motion": "^10.2.4",
