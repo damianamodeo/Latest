@@ -9,7 +9,7 @@ export default ({ mode }) => {
   return defineConfig({
     base: `/${process.env.VITE_APP_NAME}/`,
     build: {
-      outDir: "docs",
+      outDir: "dist",
     },
     publicDir: `src/apps/proclaimer/public`,
     plugins: [
