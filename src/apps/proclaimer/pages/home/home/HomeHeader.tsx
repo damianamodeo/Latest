@@ -5,7 +5,7 @@ type HomeHeaderType = {
 const HomeHeader = ({ changeSubpage }: HomeHeaderType) => {
   return (
     <div className={``} onClick={() => changeSubpage("Record", ">")}>
-      HomeHeader
+      HomeHeader 0.1
     </div>
   );
 };
