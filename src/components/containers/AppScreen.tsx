@@ -24,7 +24,7 @@ const variants = {
 type AppType = {
   pages: {
     startPage: string;
-    Icon: () => JSX.Element;
+    Icon: any;
     subpages: { [key: string]: { Content: any; Header: any } | undefined };
   }[];
 };
@@ -73,8 +73,8 @@ const App = ({ pages }: AppType) => {
                     animate="center"
                     exit="exit"
                     transition={{
-                      x: { type: "tween", duration: 0.4 },
-                      opacity: { duration: 0.4 },
+                      x: { type: "tween", duration: 0.3 },
+                      opacity: { duration: 0.3 },
                     }}
                   >
                     <Content
@@ -95,6 +95,10 @@ const App = ({ pages }: AppType) => {
       </div>
       <div className="fixed bottom-0 w-full flex h-16 bg-gray-300 dark:bg-gray-800">
         {pages.map(({ startPage, Icon }, index) => {
+          const pageStyle =
+            startPage === page
+              ? "stroke-blue-700 dark:stroke-blue-400 text-blue-700 dark:text-blue-400"
+              : "stroke-black dark:stroke-white";
           return (
             <div
               key={index}
@@ -102,8 +106,12 @@ const App = ({ pages }: AppType) => {
               className="grow flex justify-center "
             >
               <div className="flex flex-col justify-center text-center">
-                <Icon></Icon>
-                <div>{startPage}</div>
+                <div
+                  className={`${pageStyle}  fill-none stroke-[2] text-[1.4rem] mx-auto mb-1`}
+                >
+                  <Icon />
+                </div>
+                <div className={`${pageStyle} text-xs`}>{startPage}</div>
               </div>
             </div>
           );
