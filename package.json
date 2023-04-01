@@ -7,7 +7,8 @@
     "dev": "vite --host",
     "build": "tsc && VITE_APP_BUILD_TIME=$(date +%s) vite build --base=./",
     "preview": "vite preview",
-    "deploy-gh-pages": "tsc && VITE_APP_BUILD_TIME=$(date +%s) vite build && gh-pages -d dist",
+    "deploy-gh-pages": "tsc && VITE_APP_BUILD_TIME=$(date +%s) vite build && gh-pages -d dist -m 'gh-pages deploy'",
+    "gh-pages-help": "gh-pages --help",
     "generate-PROCLAIMER-pwa-assets": "npx pwa-asset-generator src/apps/proclaimer/app/logo.svg src/apps/proclaimer/public/assets --background $(grep -Po '^VITE_APP_SPLASH_SCREEN_COLOR=\\K.*' .env  ) --favicon true --padding '10%'"
   },
   "dependencies": {
