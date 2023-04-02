@@ -12,13 +12,16 @@
     "generate-PROCLAIMER-pwa-assets": "npx pwa-asset-generator src/apps/proclaimer/app/logo.svg src/apps/proclaimer/public/assets --background $(grep -Po '^VITE_APP_SPLASH_SCREEN_COLOR=\\K.*' .env  ) --favicon true --padding '10%'"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.0.0",
     "framer-motion": "^10.2.4",
     "gh-pages": "^5.0.0",
     "pwa-asset-generator": "^6.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "vite-plugin-html": "^3.2.0",
-    "vite-plugin-svgr": "^2.4.0"
+    "vite-plugin-svgr": "^2.4.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.29",
