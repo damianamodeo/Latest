@@ -1,9 +1,17 @@
 type HeaderType = {
-  children: any;
+  left: any;
+  center: any;
+  right: any;
 };
 
-const Header = ({ children }: HeaderType) => {
-  return <div className={`h-full p-2 grid place-items-center`}>{children}</div>;
+const Header = ({ left, center, right }: HeaderType) => {
+  return (
+    <div className={`h-full flex place-items-center`}>
+      <div className={`h-full flex place-items-center p-2 w-32`}>{left}</div>
+      <div className={`h-full flex place-items-center m-auto`}>{center}</div>
+      <div className={`h-full flex place-items-center p-2 w-32`}>{right}</div>
+    </div>
+  );
 };
 
 export default Header;

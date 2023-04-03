@@ -58,7 +58,7 @@ const App = ({ pages }: AppType) => {
                   }}
                 />
               </div>
-              <div className="fixed top-16 bottom-16 w-full bg-white dark:bg-black">
+              <div className="fixed top-16 bottom-16 w-full bg-white dark:bg-black overflow-y-auto p-2">
                 <AnimatePresence
                   initial={false}
                   mode="popLayout"
