@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import { VitePWA } from "vite-plugin-pwa";
 import { createHtmlPlugin } from "vite-plugin-html";
 import svgr from "vite-plugin-svgr";
+import path from "node:path";
 
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
@@ -104,5 +105,13 @@ export default ({ mode }) => {
         },
       }),
     ],
+    resolve: {
+      alias: {
+        "@CONTAINERS": path.resolve(__dirname, "src/components/containers"),
+        "@EXAMPLES": path.resolve(__dirname, "src/components/examples"),
+        "@ICONS": path.resolve(__dirname, "src/components/icons"),
+        "@INPUTS": path.resolve(__dirname, "src/components/inputs"),
+      },
+    },
   });
 };
