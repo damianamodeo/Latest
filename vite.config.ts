@@ -113,5 +113,6 @@ export default ({ mode }) => {
         "@INPUTS": path.resolve(__dirname, "src/components/inputs"),
       },
     },
+    server: { watch: { usePolling: true } },
   });
 };
