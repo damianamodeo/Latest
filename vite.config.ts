@@ -111,6 +111,8 @@ export default ({ mode }) => {
         "@EXAMPLES": path.resolve(__dirname, "src/components/examples"),
         "@ICONS": path.resolve(__dirname, "src/components/icons"),
         "@INPUTS": path.resolve(__dirname, "src/components/inputs"),
+        "@COMPONENTS": path.resolve(__dirname, "src/components"),
+        "@SERVICES": path.resolve(__dirname, "src/services"),
       },
     },
     server: { watch: { usePolling: true } },

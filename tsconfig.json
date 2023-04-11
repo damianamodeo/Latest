@@ -20,7 +20,9 @@
       "@CONTAINERS/*": ["src/components/containers/*"],
       "@EXAMPLES/*": ["src/components/examples/*"],
       "@INPUTS/*": ["src/components/inputs/*"],
-      "@ICONS/*": ["src/components/icons/*"]
+      "@ICONS/*": ["src/components/icons/*"],
+      "@COMPONENTS/*": ["src/components/*"],
+      "@SERVICES/*": ["src/services/*"]
     }
   },
   "include": ["src"],
