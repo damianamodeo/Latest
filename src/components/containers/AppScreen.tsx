@@ -50,7 +50,7 @@ const App = ({ pages }: AppType) => {
               key={index}
               className={`${startPage === page ? "grow" : "hidden"}`}
             >
-              <div className="fixed w-full bg-gray-300 dark:bg-gray-800 h-16">
+              <div className="fixed w-full bg-neutral-300 dark:bg-neutral-800 h-16">
                 <Header
                   changeSubpage={(newSubpage: string, direction: "<" | ">") => {
                     setDirection(direction);
@@ -93,7 +93,7 @@ const App = ({ pages }: AppType) => {
           );
         })}
       </div>
-      <div className="fixed bottom-0 w-full flex h-16 bg-gray-300 dark:bg-gray-800">
+      <div className="fixed bottom-0 w-full flex h-16 bg-neutral-300 dark:bg-neutral-800">
         {pages.map(({ startPage, Icon }, index) => {
           const pageStyle =
             startPage === page
