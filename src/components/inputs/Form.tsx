@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Autocomplete from "./Autocomplete";
 import Select from "./Select";
 import Text from "./Text";
+import Number from "./Number";
 
 type FormData = {
   firstName: string;
@@ -35,5 +36,6 @@ const Form = ({ zodSchema, children }: any) => {
 Form.Autocomplete = Autocomplete
 Form.Select = Select
 Form.Text = Text
+Form.Number = Number
 
 export default Form;

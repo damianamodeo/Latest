@@ -19,7 +19,7 @@ const Home = ({ changeSubpage }: HomeType) => {
         width="md"
         clickAction={() => changeSubpage("Return", "<")}
       >
-        Add & Delete Maps
+        Add Maps
       </Button>
     </div>
   );

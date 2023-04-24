@@ -193,7 +193,7 @@ const Record = () => {
           <div className="h-2"></div>
           <div className="flex">
             {state.street === "init" ? null : (
-              <Form.Text
+              <Form.Number
                 value={state.houseNumber}
                 label=""
                 placeholder="House"
@@ -201,11 +201,11 @@ const Record = () => {
                   dispatch({ type: "houseNumber", payload: e.target.value })
                 }
                 width="sm"
-              ></Form.Text>
+              ></Form.Number>
             )}
             <div className="grow"></div>
             {state.houseNumber === "" ? null : (
-              <Form.Text
+              <Form.Number
                 value={state.unitNumber}
                 label=""
                 placeholder="Unit"
@@ -213,7 +213,7 @@ const Record = () => {
                   dispatch({ type: "unitNumber", payload: e.target.value })
                 }
                 width="xs"
-              ></Form.Text>
+              ></Form.Number>
             )}
           </div>
           <div className="h-2"></div>
