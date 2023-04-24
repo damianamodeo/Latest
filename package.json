@@ -5,18 +5,26 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
+    "emulator-start": "firebase emulators:start --import=./local --export-on-exit",
     "build": "tsc && VITE_APP_BUILD_TIME=$(date +%s) vite build --base=./",
     "preview": "vite preview",
-    "deploy-gh-pages": "tsc && VITE_APP_BUILD_TIME=$(date +%s) vite build && gh-pages -d dist",
+    "deploy-gh-pages": "tsc && VITE_APP_BUILD_TIME=$(date +%s) vite build && gh-pages -d dist -m 'gh-pages deploy'",
+    "gh-pages-help": "gh-pages --help",
     "generate-PROCLAIMER-pwa-assets": "npx pwa-asset-generator src/apps/proclaimer/app/logo.svg src/apps/proclaimer/public/assets --background $(grep -Po '^VITE_APP_SPLASH_SCREEN_COLOR=\\K.*' .env  ) --favicon true --padding '10%'"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.13",
+    "@hookform/resolvers": "^3.0.0",
+    "firebase": "^9.19.1",
     "framer-motion": "^10.2.4",
     "gh-pages": "^5.0.0",
     "pwa-asset-generator": "^6.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vite-plugin-html": "^3.2.0"
+    "react-hook-form": "^7.43.9",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-svgr": "^2.4.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.29",

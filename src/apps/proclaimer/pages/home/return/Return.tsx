@@ -1,12 +1,15 @@
+import AddMapID from "@COMPONENTS/firebase/AddMaps";
+import Center from "@CONTAINERS/Center";
+
 type ReturnType = {
   changeSubpage: (newSubpage: string, direction: "<" | ">") => void;
 };
 
 const Return = ({ changeSubpage }: ReturnType) => {
   return (
-    <div className={``} onClick={() => changeSubpage("Write", ">")}>
-      Return
-    </div>
+    <Center>
+      <AddMapID></AddMapID>
+    </Center>
   );
 };
 

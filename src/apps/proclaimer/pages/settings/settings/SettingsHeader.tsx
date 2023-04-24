@@ -6,11 +6,11 @@ type SettingsHeaderType = {
 
 const SettingsHeader = ({ changeSubpage }: SettingsHeaderType) => {
   return (
-    <Header>
-      <div className={``}>
-        Settings
-      </div>
-    </Header>
+    <Header
+      left={null}
+      center={<div className={``}>Settings</div>}
+      right={null}
+    />
   );
 };
 
