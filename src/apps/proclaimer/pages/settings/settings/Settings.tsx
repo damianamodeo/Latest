@@ -1,4 +1,6 @@
+import EditUserID from "@COMPONENTS/localStorage/EditUserID";
 import Version from "@COMPONENTS/utility/Version";
+import Center from "@CONTAINERS/Center";
 
 type SettingsType = {
   changeSubpage: (newSubpage: string, direction: "<" | ">") => void;
@@ -7,7 +9,10 @@ type SettingsType = {
 const Settings = ({ changeSubpage }: SettingsType) => {
   return (
     <>
-      <Version></Version>
+      <Center>
+        <Version></Version>
+        <EditUserID></EditUserID>
+      </Center>
     </>
   );
 };
