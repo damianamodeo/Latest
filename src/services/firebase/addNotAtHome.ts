@@ -52,26 +52,14 @@ const addNotAtHome = async ({
       const document = await transaction.get(documentRef);
       if (!document.exists()) {
         transaction.set(documentRef, {
-          [id]: {
-            id: Date.now(),
-            mapNumber: mapID,
-            lng: addressData.lng,
-            lat: addressData.lat,
-          },
+          [id]: { ...addressData, id: Date.now() },
         });
         return "First Not At Home created successfully";
       }
       transaction.update(documentRef, {
-        [id]: {
-          id: Date.now(),
-          mapNumber: mapID,
-          user,
-          lng: addressData.lng,
-          lat: addressData.lat,
-          relevance: addressData.relevance,
-        },
+        [id]: { ...addressData, id: Date.now() },
       });
-      return addressData;
+      return { ...addressData, id: Date.now() };
     });
     console.log("<<< NEW NOT AT HOME ADDED >>>\nAddress Details:", newAddress);
     return newAddress;
