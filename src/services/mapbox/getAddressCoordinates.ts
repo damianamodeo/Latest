@@ -17,7 +17,6 @@ const getAddressCoordinates = async (
       return response.json();
     })
     .then((data) => {
-      console.log(data.features[0])
       return {
         lng: data.features[0].center[0],
         lat: data.features[0].center[1],

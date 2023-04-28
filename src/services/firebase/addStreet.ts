@@ -6,9 +6,16 @@ type NewStreetType = {
   mapID: number;
   suburb: number;
   street: string;
+  coordinates: { lng: number; lat: number };
 };
 
-const addStreet = async ({ cong, mapID, suburb, street }: NewStreetType) => {
+const addStreet = async ({
+  cong,
+  mapID,
+  suburb,
+  street,
+  coordinates,
+}: NewStreetType) => {
   const documentRef = doc(fdb, cong, "maps");
   try {
     const newMapDetails: object = await runTransaction(
@@ -27,8 +34,8 @@ const addStreet = async ({ cong, mapID, suburb, street }: NewStreetType) => {
         if (!mapDetails[mapID].suburbs[suburb].streets.includes(street)) {
           mapDetails[mapID].suburbs[suburb].streets = [
             ...mapDetails[mapID].suburbs[suburb].streets,
-            street,
-          ].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+            { name: street, lng: coordinates.lng, lat: coordinates.lat },
+          ].sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
         }
         // update doc
         transaction.update(documentRef, {

@@ -1,6 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
-import { doc, onSnapshot } from "firebase/firestore";
-import { fdb } from "@SERVICES/firebase/config";
+import { useReducer } from "react";
 import AddStreetModal from "./components/AddStreetModal";
 import AddSuburbModal from "./components/AddSuburbModal";
 import Form from "@INPUTS/Form";
@@ -12,7 +10,7 @@ const reducer = (state: any, action: any) => {
   if (typeof action.payload === "object") {
     return { ...state, [action.type]: "adding " + action.type };
   }
-  const asd: { [key: string]: any } = {
+  const actions: { [key: string]: any } = {
     mapID: {
       mapID: action.payload,
       suburb: "init",
@@ -39,8 +37,18 @@ const reducer = (state: any, action: any) => {
     },
     unitNumber: { ...state, unitNumber: action.payload },
   };
+  return actions[action.type];
+};
 
-  return asd[action.type];
+type AddAddressType = {
+  mapDetails: {
+    id: string;
+    suburbs: {
+      name: string;
+      bbox: number[];
+      streets: { name: string; lng: number; lat: number }[];
+    }[];
+  }[];
 };
 
 type ReducerType = [
@@ -57,7 +65,7 @@ type ReducerType = [
   }) => any
 ];
 
-const AddAddress = () => {
+const AddAddress = ({ mapDetails }: AddAddressType) => {
   const [state, dispatch]: ReducerType = useReducer(reducer, {
     mapID: "init",
     suburb: "init",
@@ -66,12 +74,6 @@ const AddAddress = () => {
     unitNumber: "",
   });
 
-  const [mapDetails, setMapDetails] = useState<
-    {
-      id: string;
-      suburbs: { name: string; bbox: number[]; streets: [] }[];
-    }[]
-  >([]);
   const currentMapIndex = () => {
     return Math.max(
       0,
@@ -79,7 +81,7 @@ const AddAddress = () => {
     );
   };
 
-  const currentSuburbIndex = () => {
+  const currentSuburbIndex: () => number = () => {
     if (state.mapID === "init") {
       return 0;
     }
@@ -91,21 +93,33 @@ const AddAddress = () => {
     );
   };
 
+  const currentStreetIndex: () => number = () => {
+    return mapDetails[currentMapIndex()].suburbs[
+      currentSuburbIndex()
+    ].streets.findIndex((street) => street.name === state.street);
+  };
+
   const clickAdd = async () => {
+    currentStreetIndex();
+
     const mapData = await getAddressCoordinates(
       state.houseNumber,
       state.street,
       state.suburb,
       mapDetails[currentMapIndex()].suburbs[currentSuburbIndex()].bbox
     );
-
     addNotAtHome({
       ...mapData,
       ...state,
       letter: false,
-      user: "xxx",
       calls: [Date.now()],
       cong: "australia_nsw_maitland",
+      streetCoordinates: {
+        lng: mapDetails[currentMapIndex()].suburbs[currentSuburbIndex()]
+          .streets[currentStreetIndex()].lng,
+        lat: mapDetails[currentMapIndex()].suburbs[currentSuburbIndex()]
+          .streets[currentStreetIndex()].lat,
+      },
     });
     if (state.unitNumber === "") {
       dispatch({ type: "houseNumber", payload: "" });
@@ -124,22 +138,8 @@ const AddAddress = () => {
       : mapDetails[currentMapIndex()].suburbs.length === 0
       ? []
       : mapDetails[currentMapIndex()].suburbs[currentSuburbIndex()].streets.map(
-          (street: any) => street
+          (street: any) => street.name
         );
-
-  useEffect(() => {
-    const unsub = onSnapshot(
-      doc(fdb, "australia_nsw_maitland", "maps"),
-      (doc) => {
-        if (doc.data()) {
-          setMapDetails(doc.data()?.mapDetails);
-        }
-      }
-    );
-    return () => {
-      unsub();
-    };
-  }, []);
 
   return (
     <>

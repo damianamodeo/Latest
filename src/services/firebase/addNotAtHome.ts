@@ -10,18 +10,34 @@ type NotAtHomeType = {
   unitNumber: string;
   calls: number[];
   letter: boolean;
-  user: string;
   lng: number;
   lat: number;
   relevance: number;
+  streetCoordinates: { lng: number; lat: number };
 };
 
 const addNotAtHome = async ({
   cong,
-  user,
   mapID,
+  lng,
+  lat,
+  relevance,
+  streetCoordinates,
   ...addressData
 }: NotAtHomeType) => {
+  const newDetails = {
+    ["id" + Date.now()]: {
+      user: `${localStorage.getItem("initID")}_${localStorage.getItem(
+        "username"
+      )}`,
+      id: Date.now(),
+      mapNumber: mapID,
+      relevance,
+      ...addressData,
+      ...(relevance > 0.6 ? { lng, lat } : streetCoordinates),
+    },
+  };
+
   // const documentRef = doc(fdb, cong, "not_at_homes");
   // try {
   //   const newAddress = await runTransaction(fdb, async (transaction) => {
@@ -51,15 +67,11 @@ const addNotAtHome = async ({
       const id = "id" + Date.now();
       const document = await transaction.get(documentRef);
       if (!document.exists()) {
-        transaction.set(documentRef, {
-          [id]: { ...addressData, id: Date.now() },
-        });
+        transaction.set(documentRef, newDetails);
         return "First Not At Home created successfully";
       }
-      transaction.update(documentRef, {
-        [id]: { ...addressData, id: Date.now() },
-      });
-      return { ...addressData, id: Date.now() };
+      transaction.update(documentRef, newDetails);
+      return newDetails;
     });
     console.log("<<< NEW NOT AT HOME ADDED >>>\nAddress Details:", newAddress);
     return newAddress;
