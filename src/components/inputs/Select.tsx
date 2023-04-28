@@ -51,13 +51,11 @@ const ListBoxInput = ({
           leaveFrom="transform scale-100  origin-top"
           leaveTo="transform scale-y-0  scale-x-90  origin-top"
         >
-          <Listbox.Options
-            className={`absolute bg-neutral-200 dark:bg-neutral-700 mt-1 rounded w-full z-50`}
-          >
+          <Listbox.Options className={`absolute mt-1 w-full z-50`}>
             {options.map((option, index) => (
               <Listbox.Option
                 className={({ active }) =>
-                  `px-2 h-16 border-b-[0.7px] dark:border-neutral-600 border-neutral-100 last:border-none flex items-center ${
+                  `px-2 h-16 border-b-[0.7px] bg-neutral-200 dark:bg-neutral-700 dark:border-neutral-600 border-neutral-100 last:border-none flex items-center ${
                     active
                       ? "bg-neutral-300 dark:bg-neutral-800 dark:text-white"
                       : ""
@@ -80,6 +78,8 @@ const ListBoxInput = ({
                 )}
               </Listbox.Option>
             ))}
+            <div className="bg-neutral-200 dark:bg-neutral-700 h-2 rounded-b-full border-b-[1rem]-xx"></div>
+            <div className="h-20"></div>
           </Listbox.Options>
         </Transition>
       </div>

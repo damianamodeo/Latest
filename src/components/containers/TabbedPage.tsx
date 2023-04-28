@@ -73,9 +73,9 @@ const TabbedPage = ({ tabItems, color = "blue" }: TabbedPageType) => {
   });
 
   return (
-    <div className="h-full">
+    <div className="h-full border-4-xxx border-green-500-xxx flex flex-col">
       <div
-        className={`hideScollbar tabbar relative flex bg-white dark:bg-neutral-900 w-full touch-auto h-min-xx
+        className={`h-10 hideScollbar tabbar relative flex bg-white dark:bg-neutral-900 w-full touch-auto 
 				overflow-x-auto overflow-y-hidden border border-x-0 border-t-0 border-b-[1.25px] border-y-neutral-500 dark:border-y-neutral-500`}
       >
         {tabItems.map((item: any, key: number) => {
@@ -101,7 +101,7 @@ const TabbedPage = ({ tabItems, color = "blue" }: TabbedPageType) => {
         ></div>
       </div>
 
-      <div className="overflow-y-auto overscroll-x-contain h-full">
+      <div className="h-full relative overflow-y-auto overscroll-x-contain border-4-xxx border-red-500-xxx">
         <div
           className={`hideScollbar h-full pb-2-xx grid grid-flow-col auto-cols-[100%] overflow-x-auto-xxx snap-x snap-mandatory snap-always overflow-y-auto `}
         >
