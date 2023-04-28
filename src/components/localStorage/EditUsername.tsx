@@ -2,11 +2,11 @@ import Form from "@INPUTS/Form";
 import { useState } from "react";
 
 const EditUserID = () => {
-  const [userID, setUserID] = useState(localStorage.getItem("userID"));
+  const [userID, setUserID] = useState(localStorage.getItem("username"));
 
   const onChange = (e: any) => {
-    localStorage.setItem("userID", e.target.value);
-    setUserID(localStorage.getItem("userID"));
+    localStorage.setItem("username", e.target.value);
+    setUserID(localStorage.getItem("username"));
   };
   return (
     <div className={``}>
