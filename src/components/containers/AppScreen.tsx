@@ -1,5 +1,5 @@
 import { AnimatePresence, motion as m } from "framer-motion";
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 
 const variants = {
   enter: (direction: "<") => {
@@ -51,12 +51,17 @@ const App = ({ pages }: AppType) => {
               className={`${startPage === page ? "grow" : "hidden"}`}
             >
               <div className="fixed w-full bg-neutral-300 dark:bg-neutral-800 h-16">
-                <Header
-                  changeSubpage={(newSubpage: string, direction: "<" | ">") => {
-                    setDirection(direction);
-                    subpage[index].setSubpage(newSubpage);
-                  }}
-                />
+                <Suspense fallback={<div></div>}>
+                  <Header
+                    changeSubpage={(
+                      newSubpage: string,
+                      direction: "<" | ">"
+                    ) => {
+                      setDirection(direction);
+                      subpage[index].setSubpage(newSubpage);
+                    }}
+                  />
+                </Suspense>
               </div>
               <div className="fixed top-16 bottom-16 w-full bg-white dark:bg-black overflow-y-auto">
                 <AnimatePresence
@@ -65,7 +70,7 @@ const App = ({ pages }: AppType) => {
                   custom={direction}
                 >
                   <m.div
-                    className="h-full "
+                    className="h-full overflow-hidden"
                     key={subpage[index].currentPage}
                     custom={direction}
                     variants={variants}
@@ -77,15 +82,17 @@ const App = ({ pages }: AppType) => {
                       opacity: { duration: 0.3 },
                     }}
                   >
-                    <Content
-                      changeSubpage={(
-                        newSubpage: string,
-                        direction: "<" | ">"
-                      ) => {
-                        setDirection(direction);
-                        subpage[index].setSubpage(newSubpage);
-                      }}
-                    />
+                    <Suspense fallback={<div></div>}>
+                      <Content
+                        changeSubpage={(
+                          newSubpage: string,
+                          direction: "<" | ">"
+                        ) => {
+                          setDirection(direction);
+                          subpage[index].setSubpage(newSubpage);
+                        }}
+                      />
+                    </Suspense>
                   </m.div>
                 </AnimatePresence>
               </div>
