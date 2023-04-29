@@ -5,6 +5,7 @@ import Autocomplete from "./Autocomplete";
 import Select from "./Select";
 import Text from "./Text";
 import Number from "./Number";
+import Alphanumeric from "./Alphanumeric";
 
 type FormData = {
   firstName: string;
@@ -37,5 +38,6 @@ Form.Autocomplete = Autocomplete
 Form.Select = Select
 Form.Text = Text
 Form.Number = Number
+Form.Alphanumeric = Alphanumeric
 
 export default Form;
