@@ -1,5 +1,9 @@
+type AddressType = {
+  key: string
+}
+
 type AddressListType = {
-  notAtHomesList?: any;
+  notAtHomesList: AddressType[];
 };
 
 const AddressList = ({ notAtHomesList: addresses }: AddressListType) => {
@@ -7,6 +11,9 @@ const AddressList = ({ notAtHomesList: addresses }: AddressListType) => {
     <div className={`pb-16`}>
       {addresses &&
         Object.entries(addresses)
+          .sort((a, b) => {
+            return b[1].key.localeCompare(a[1].key);
+          })
           .filter((address: any) => {
             return (
               address[1].user ===
@@ -15,7 +22,6 @@ const AddressList = ({ notAtHomesList: addresses }: AddressListType) => {
               )}`
             );
           })
-          .reverse()
           .map((address: any, key: number) => {
             return (
               <div

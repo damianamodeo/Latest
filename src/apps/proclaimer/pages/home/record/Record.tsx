@@ -13,15 +13,17 @@ const Record = () => {
     }[]
   >([]);
 
-  const [notAtHomesList, setNotAtHomesList] = useState(() => {
-    return;
-  });
+  const [notAtHomesList, setNotAtHomesList] = useState([{ key: "" }]);
 
   useEffect(() => {
     const unsub = onSnapshot(
       doc(fdb, "notAtHomes", "MaitlandCongregation"),
       (doc) => {
-        setNotAtHomesList(() => doc.data());
+        const obj: any = doc.data();
+        const list = Object.keys(obj).map((key) => {
+          return { key, ...obj[key] };
+        });
+        setNotAtHomesList(list);
       }
     );
     return unsub;
