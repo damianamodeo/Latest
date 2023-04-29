@@ -24,13 +24,6 @@ const Alphanumeric = ({
   width = "md",
   height = "md",
 }: AlphanumericType) => {
-  const [inputValue, setInputValue] = useState(value);
-  const onInput = (e: any) => {
-    const newValue = e.target.value.replace(/[^\w\s]/gi, "").replace(/[\s]/g, "")
-    onChange(newValue)
-    setInputValue(newValue);
-  };
-
   return (
     <>
       <label> {label}</label>
@@ -38,8 +31,10 @@ const Alphanumeric = ({
         className={`${widths[width]} ${heights[height]} dark:bg-neutral-700 bg-neutral-200 rounded p-2`}
         type="text"
         pattern="^[a-zA-Z0-9]*$"
-        value={inputValue}
-        onChange={onInput}
+        value={value}
+        onChange={(e) =>
+          onChange(e.target.value.replace(/[^\w\s]/gi, "").replace(/[\s]/g, ""))
+        }
         {...register}
         placeholder={placeholder}
       />
