@@ -191,29 +191,29 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
           <div className="h-2"></div>
           <div className="flex">
             {state.street === "init" ? null : (
-              <Form.Number
+              <Form.Alphanumeric
                 value={state.houseNumber}
                 label=""
                 placeholder="House"
-                onChange={(e: any) =>
-                  dispatch({ type: "houseNumber", payload: e.target.value })
+                onChange={(value: string) =>
+                  dispatch({ type: "houseNumber", payload: value })
                 }
                 width="sm"
                 height="xl"
-              ></Form.Number>
+              ></Form.Alphanumeric>
             )}
             <div className="grow"></div>
             {state.houseNumber === "" ? null : (
-              <Form.Number
+              <Form.Alphanumeric
                 value={state.unitNumber}
                 label=""
                 placeholder="Unit"
-                onChange={(e) =>
-                  dispatch({ type: "unitNumber", payload: e.target.value })
+                onChange={(value: string) =>
+                  dispatch({ type: "unitNumber", payload: value })
                 }
                 width="xs"
                 height="xl"
-              ></Form.Number>
+              ></Form.Alphanumeric>
             )}
           </div>
           <div className="h-8"></div>
