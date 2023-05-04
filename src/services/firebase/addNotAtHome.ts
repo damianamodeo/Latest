@@ -34,7 +34,7 @@ const addNotAtHome = async ({
       mapNumber: mapID,
       relevance,
       ...addressData,
-      ...(relevance > 0.6 ? { lng, lat } : streetCoordinates),
+      ...(relevance > 0.7037 ? { lng, lat } : streetCoordinates),
     },
   };
 

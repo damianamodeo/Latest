@@ -1,10 +1,11 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import AddStreetModal from "./components/AddStreetModal";
 import AddSuburbModal from "./components/AddSuburbModal";
 import Form from "@INPUTS/Form";
 import Button from "@INPUTS/Button";
 import getAddressCoordinates from "@SERVICES/mapbox/getAddressCoordinates";
 import addNotAtHome from "@SERVICES/firebase/addNotAtHome";
+import SubmitAddressModal from "./components/SubmitAddressModal";
 
 const reducer = (state: any, action: any) => {
   if (typeof action.payload === "object") {
@@ -72,7 +73,9 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
     street: "init",
     houseNumber: "",
     unitNumber: "",
+    mapData: {},
   });
+  const [submit, setSubmit] = useState(false);
 
   const currentMapIndex = () => {
     return Math.max(
@@ -100,31 +103,9 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
   };
 
   const clickAdd = async () => {
-    currentStreetIndex();
+    // currentStreetIndex();
 
-    const mapData = await getAddressCoordinates(
-      state.houseNumber,
-      state.street,
-      state.suburb,
-      mapDetails[currentMapIndex()].suburbs[currentSuburbIndex()].bbox
-    );
-    addNotAtHome({
-      ...mapData,
-      ...state,
-      letter: false,
-      calls: [Date.now()],
-      cong: "australia_nsw_maitland",
-      streetCoordinates: {
-        lng: mapDetails[currentMapIndex()].suburbs[currentSuburbIndex()]
-          .streets[currentStreetIndex()].lng,
-        lat: mapDetails[currentMapIndex()].suburbs[currentSuburbIndex()]
-          .streets[currentStreetIndex()].lat,
-      },
-    });
-    if (state.unitNumber === "") {
-      dispatch({ type: "houseNumber", payload: "" });
-    }
-    dispatch({ type: "unitNumber", payload: "" });
+
   };
 
   const suburbOptions =
@@ -219,7 +200,11 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
           <div className="h-8"></div>
           <div className="grid gap-4">
             {state.houseNumber === "" ? null : (
-              <Button clickAction={clickAdd} width="full" color="blue">
+              <Button
+                clickAction={() => setSubmit(true)}
+                width="full"
+                color="blue"
+              >
                 Add
               </Button>
             )}
@@ -239,6 +224,23 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
           suburb={currentSuburbIndex()}
           mapDetails={mapDetails}
         />
+
+        {submit && (
+          <SubmitAddressModal
+            closeModal={setSubmit}
+            address={state}
+            bbox={
+              mapDetails[currentMapIndex()].suburbs[currentSuburbIndex()].bbox
+            }
+            streetCoordinates={{
+              lng: mapDetails[currentMapIndex()].suburbs[currentSuburbIndex()]
+                .streets[currentStreetIndex()].lng,
+              lat: mapDetails[currentMapIndex()].suburbs[currentSuburbIndex()]
+                .streets[currentStreetIndex()].lat,
+            }}
+            dispatch={dispatch}
+          ></SubmitAddressModal>
+        )}
       </div>
     </>
   );

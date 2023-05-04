@@ -1,10 +1,18 @@
-const getAddressCoordinates = async (
-  houseNumber: string,
-  street: number | string,
-  suburb: number | string,
-  bbox: number[],
-  country?: string
-) => {
+type QueryType = {
+  houseNumber: string;
+  street: number | string;
+  suburb: number | string;
+  bbox: number[];
+  country?: string;
+};
+
+const getAddressCoordinates = async ({
+  houseNumber,
+  street,
+  suburb,
+  bbox,
+  country,
+}: QueryType) => {
   const tolerance = 0.015;
   const searchString = `https://api.mapbox.com/geocoding/v5/mapbox.places/${houseNumber}%20${street}%20${suburb}%20.json?country=au&bbox=${
     bbox[0] - tolerance
