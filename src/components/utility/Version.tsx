@@ -7,13 +7,16 @@ const Version = () => {
     timeStyle: "short",
   }).format(buildTime);
   const formattedRelativeBuildTime = new Intl.RelativeTimeFormat("en-AU", {
-    style: "long",
+    style: "short",
     numeric: "auto",
-  }).format(((Date.now() - buildTime) / 1000 / 60 / 60 / 24) * -1, "days");
+  }).format(
+    Math.round(Date.now() - buildTime / 1000 / 60 / 60 / 24) * -1,
+    "days"
+  );
 
   return (
     <>
-      <div className="p-2">
+      <div className="m-6">
         Version: {formattedBuildTime} ({formattedRelativeBuildTime})
       </div>
     </>
