@@ -20,9 +20,11 @@ const Record = () => {
       doc(fdb, "notAtHomes", "MaitlandCongregation"),
       (doc) => {
         const obj: any = doc.data();
-        const list = Object.keys(obj).map((key) => {
+        const list = obj
+        ? Object.keys(obj).map((key) => {
           return { key, ...obj[key] };
-        });
+        })
+        : [];
         setNotAtHomesList(list);
       }
     );

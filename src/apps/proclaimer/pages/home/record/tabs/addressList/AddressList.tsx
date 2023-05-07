@@ -10,7 +10,6 @@ type AddressListType = {
 };
 
 const AddressList = ({ notAtHomesList: addresses }: AddressListType) => {
-  console.log(addresses);
   return (
     <div className={`pb-16`}>
       <div className="text-sm text-center m-2 text-blue-500 dark:text-blue-300">

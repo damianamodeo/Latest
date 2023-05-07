@@ -6,7 +6,7 @@ type HomeType = {
 
 const Home = ({ changeSubpage }: HomeType) => {
   return (
-    <div className={`h-full pt-16 grid place-items-center gap-6`}>
+    <div className={`h-1/4 grid place-items-center`}>
       <Button
         color="blue"
         width="md"
@@ -19,7 +19,7 @@ const Home = ({ changeSubpage }: HomeType) => {
         width="md"
         clickAction={() => changeSubpage("Return", "<")}
       >
-        Add Maps
+        Return
       </Button>
     </div>
   );

@@ -2,5 +2,19 @@
 + improvement
 $ styling
 # fix 
+@ refactoring
 
-# fix when string is used in house or unit number field
+
+
+
++ scollable change log
+
+# limit duplicate streets and suburbs
+# prevent online functions when offline 
+# fix white banner on modal open
+
+@ change suburb and street search
+
+$ variable text size on Select component
+$ fix Select component bottom margin
+

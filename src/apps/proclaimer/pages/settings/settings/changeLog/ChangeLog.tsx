@@ -1,6 +1,10 @@
 const ChangeLog = () => {
   const changes = [
     {
+      date: "May 7",
+      changes: ["* add ability to delete address"],
+    },
+    {
       date: "May 3",
       changes: [
         "+ add ability to submit to letter list",
@@ -20,14 +24,14 @@ const ChangeLog = () => {
   return (
     <div className="m-6">
       {changes.map((change, index) => (
-        <>
-          <div key={index} className="mt-8 font-bold">
-            {change.date}
-          </div>
+        <div key={index} className="mt-8 font-bold">
+          {change.date}
           {change.changes.map((change, index) => (
-            <div key={index} className="mt-1">{change}</div>
+            <div key={index} className="mt-1 font-light">
+              {change}
+            </div>
           ))}
-        </>
+        </div>
       ))}
     </div>
   );
