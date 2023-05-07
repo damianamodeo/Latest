@@ -1,22 +1,29 @@
+import Longpress from "@INPUTS/Longpress";
+import deleteNotAtHome from "@SERVICES/firebase/deleteNotAtHome";
+
 type AddressType = {
-  key: string
-}
+  key: string;
+};
 
 type AddressListType = {
   notAtHomesList: AddressType[];
 };
 
 const AddressList = ({ notAtHomesList: addresses }: AddressListType) => {
+  console.log(addresses);
   return (
     <div className={`pb-16`}>
+      <div className="text-sm text-center m-2 text-blue-500 dark:text-blue-300">
+        Press and hold to delete
+      </div>
       {addresses &&
-        Object.entries(addresses)
+        addresses
           .sort((a, b) => {
-            return b[1].key.localeCompare(a[1].key);
+            return b.key.localeCompare(a.key);
           })
           .filter((address: any) => {
             return (
-              address[1].user ===
+              address.user ===
               `${localStorage.getItem("initID")}_${localStorage.getItem(
                 "username"
               )}`
@@ -24,28 +31,27 @@ const AddressList = ({ notAtHomesList: addresses }: AddressListType) => {
           })
           .map((address: any, key: number) => {
             return (
-              <div
-                key={key}
-                // onClick={() => handleClick(address)}
-                className="grid grid-cols-12 h-12 border-b dark:border-darkGrey-700 text-sm text-center"
-              >
-                <div className="col-span-2 px-2 my-auto font-bold">
-                  {address[1].mapNumber}
-                </div>
-                <div className="col-span-1 px-2 my-auto">
-                  {`${address[1].unitNumber && `${address[1].unitNumber}/`}${
-                    address[1].houseNumber
-                  }`}
-                </div>
-                <div className="col-span-4 my-auto">
-                  {`${address[1].street}`}
-                </div>
-                <div className="col-span-4 my-auto">{address[1].suburb}</div>
-                <div className="col-span-1 px-2 text-right my-auto">
-                  {/* <LongPress action={() => handleLongPress(address)}>
-                    {`${address[1].letter ? "L X" : "X"}`}
-                  </LongPress> */}
-                </div>
+              <div key={key}>
+                <Longpress action={() => deleteNotAtHome(address)}>
+                  <div
+                    className={`grid grid-cols-12 h-12 border-b dark:border-darkGrey-700 text-sm text-center ${
+                      address.letter
+                        ? "text-neutral-500 dark:text-neutral-400"
+                        : "X"
+                    }`}
+                  >
+                    <div className="col-span-2 px-2 my-auto font-bold">
+                      {address.mapNumber}
+                    </div>
+                    <div className="col-span-1 px-2 my-auto">
+                      {`${address.unitNumber && `${address.unitNumber}/`}${
+                        address.houseNumber
+                      }`}
+                    </div>
+                    <div className="col-span-4 my-auto">{`${address.street}`}</div>
+                    <div className="col-span-4 my-auto">{address.suburb}</div>
+                  </div>
+                </Longpress>
               </div>
             );
           })}
