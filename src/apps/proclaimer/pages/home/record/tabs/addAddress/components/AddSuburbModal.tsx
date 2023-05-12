@@ -55,12 +55,12 @@ const AddSuburbModal = ({ isOpen, closeModal, map }: AddSuburbModalType) => {
       suburb: suburbQuery,
       bbox: bbox,
     });
-    closeModal({type: "suburb", payload: suburbQuery});
+    closeModal({ type: "suburb", payload: suburbQuery });
     setSuburbQuery("");
     setSuburbOptions([]);
   };
   const handleCancel = () => {
-    closeModal({type: "suburb", payload: "init"});
+    closeModal({ type: "suburb", payload: "init" });
     setSuburbQuery("");
   };
 
@@ -82,7 +82,7 @@ const AddSuburbModal = ({ isOpen, closeModal, map }: AddSuburbModalType) => {
     >
       <div className="h-full relative">
         <Form>
-          <div className="flex justify-around  m-4">
+          <div className="flex justify-around m-4">
             <Form.Autocomplete
               value={suburbQuery}
               onChange={(e) => onSearchSuburbChange(e)}

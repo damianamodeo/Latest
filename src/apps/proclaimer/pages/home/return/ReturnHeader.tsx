@@ -19,7 +19,7 @@ const ReturnHeader = ({ changeSubpage }: ReturnHeaderType) => {
         <div className="my-auto">Back</div>
       </div>
     }
-    center={<div className={``}>Add Maps</div>}
+    center={<div className={``}>Return</div>}
     right={<div></div>}
   ></Header>
   );

@@ -1,8 +1,8 @@
 const ChangeLog = () => {
   const changes = [
     {
-      date: "May 7",
-      changes: ["* add ability to delete address"],
+      date: "May 13",
+      changes: ["* add return lists", "* add ability to delete address"],
     },
     {
       date: "May 3",
