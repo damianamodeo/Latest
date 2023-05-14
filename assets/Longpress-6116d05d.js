@@ -1,0 +1,1 @@
+import{u as e,j as t}from"./index-10dd8b3b.js";const u=({action:s,children:o})=>{const n=e(()=>{s()},()=>{console.log("click is triggered")},{shouldPreventDefault:!0,delay:500});return t.jsx("div",{...n,children:o})};export{u as L};
