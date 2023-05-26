@@ -1,4 +1,7 @@
+import Card from "@CONTAINERS/Card";
 import Button from "@INPUTS/Button";
+
+const cardStyle = `rounded-xl bg-white dark:bg-neutral-700 text-blue-400 text-center p-6 text-3xl w-full`;
 
 type HomeType = {
   changeSubpage: (newSubpage: string, direction: "<" | ">") => void;
@@ -6,21 +9,16 @@ type HomeType = {
 
 const Home = ({ changeSubpage }: HomeType) => {
   return (
-    <div className={`h-1/4 grid place-items-center`}>
-      <Button
-        color="blue"
-        width="md"
-        clickAction={() => changeSubpage("Record", "<")}
-      >
-        Record
-      </Button>
-      <Button
-        color="blue"
-        width="md"
-        clickAction={() => changeSubpage("Return", "<")}
-      >
-        Return
-      </Button>
+    <div className="bg-neutral-100 dark:bg-black h-full p-2">
+      <Card onClick={() => changeSubpage("Record", "<")}>
+        <Card.Title>Record</Card.Title>
+      </Card>
+      <Card onClick={() => changeSubpage("Return", "<")}>
+        <Card.Title>Return</Card.Title>
+      </Card>
+      <Card onClick={() => changeSubpage("Write", "<")}>
+        <Card.Title>Write</Card.Title>
+      </Card>
     </div>
   );
 };

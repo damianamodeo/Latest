@@ -54,7 +54,7 @@ const Button = ({
       <button
         {...longPressEvent}
         type={`${submit ? "submit" : "button"}`}
-        className={`${colors[color]} ${widths[width]} ${heights[height]} w- rounded text-white font-medium text-sm px-5 py-2.5 focus:outline-none dark:text-black`}
+        className={`${colors[color]} ${widths[width]} ${heights[height]} w- rounded text-white font-medium px-5 py-2.5 focus:outline-none dark:text-black`}
         ref={ref}
       >
         {children}

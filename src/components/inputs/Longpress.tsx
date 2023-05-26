@@ -1,6 +1,6 @@
 import { useLongPress } from "./useLongPress";
 
-const LongPress = ({ action, children }: any) => {
+const LongPress = ({ action, children, style }: any) => {
   const onLongPress = () => {
     action();
   };
@@ -14,7 +14,7 @@ const LongPress = ({ action, children }: any) => {
     delay: 500,
   };
   const longPressEvent = useLongPress(onLongPress, onClick, defaultOptions);
-  return <div {...longPressEvent}>{children}</div>;
+  return <div className={style} {...longPressEvent}>{children}</div>;
 };
 
 export default LongPress;

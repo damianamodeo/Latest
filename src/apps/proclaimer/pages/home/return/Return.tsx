@@ -115,7 +115,7 @@ const Return = ({ changeSubpage }: ReturnType) => {
             content: <SuburbsList suburbs={suburbs}></SuburbsList>,
           },
           {
-            title: "Map",
+            title: "Map ID",
             content: <MapsList mapNumbers={mapNumbers}></MapsList>,
           },
         ]}

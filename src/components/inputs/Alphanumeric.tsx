@@ -28,7 +28,7 @@ const Alphanumeric = ({
     <>
       <label> {label}</label>
       <input
-        className={`${widths[width]} ${heights[height]} dark:bg-neutral-700 bg-neutral-200 rounded p-2`}
+        className={`${widths[width]} ${heights[height]} dark:text-white dark:bg-neutral-700 bg-neutral-200 rounded p-2`}
         type="text"
         pattern="^[a-zA-Z0-9]*$"
         value={value}

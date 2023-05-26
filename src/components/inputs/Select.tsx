@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { ReactComponent as UpDownArrow } from "@ICONS/upDownArrow.svg";
 import widths, { WidthsType } from "./styles/widths";
 import heights, { HeightsType } from "./styles/heights";
+import Center from "@CONTAINERS/Center";
 
 type ListBoxInputType = {
   value: string;
@@ -25,7 +26,7 @@ const ListBoxInput = ({
     <Listbox value={value} onChange={onChange}>
       <div className={`relative ${widths[width]}`}>
         <Listbox.Button
-          className={`${heights[height]} bg-neutral-200 dark:bg-neutral-700 rounded p-2 w-full flex `}
+          className={`${heights[height]} bg-neutral-200 dark:bg-neutral-700 rounded w-full flex dark:text-white`}
         >
           {value === "init" ? (
             <div className="grow my-auto text-neutral-400 text-left">
@@ -35,11 +36,12 @@ const ListBoxInput = ({
             <div className="grow my-auto text-left">{value}</div>
           )}
 
-          <div
-            className={`my-auto stroke-blue-500 dark:stroke-blue-400 fill-none stroke-[2] text-[1.4rem]`}
+          <Center
+          style={`stroke-blue-500 dark:stroke-blue-400 fill-none stroke-[2]`}
+          vertically
           >
             <UpDownArrow></UpDownArrow>
-          </div>
+          </Center>
         </Listbox.Button>
 
         <Transition
@@ -55,9 +57,9 @@ const ListBoxInput = ({
             {options.map((option, index) => (
               <Listbox.Option
                 className={({ active }) =>
-                  `px-2 h-16 border-b-[0.7px] bg-neutral-200 dark:bg-neutral-700 dark:border-neutral-600 border-neutral-100 last:border-none flex items-center ${
+                  `px-2 h-16 border-b-[0.7px] bg-neutral-200 dark:bg-neutral-700 dark:text-white dark:border-neutral-600 border-neutral-100 last:border-none flex items-center ${
                     active
-                      ? "bg-neutral-300 dark:bg-neutral-800 dark:text-white"
+                      ? "bg-neutral-300 dark:bg-neutral-800"
                       : ""
                   }`
                 }

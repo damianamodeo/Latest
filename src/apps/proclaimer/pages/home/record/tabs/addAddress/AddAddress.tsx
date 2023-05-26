@@ -6,6 +6,7 @@ import Button from "@INPUTS/Button";
 import getAddressCoordinates from "@SERVICES/mapbox/getAddressCoordinates";
 import addNotAtHome from "@SERVICES/firebase/addNotAtHome";
 import SubmitAddressModal from "./components/SubmitAddressModal";
+import Center from "@CONTAINERS/Center";
 
 const reducer = (state: any, action: any) => {
   if (typeof action.payload === "object") {
@@ -102,12 +103,6 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
     ].streets.findIndex((street) => street.name === state.street);
   };
 
-  const clickAdd = async () => {
-    // currentStreetIndex();
-
-
-  };
-
   const suburbOptions =
     mapDetails.length === 0
       ? []
@@ -124,7 +119,7 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
 
   return (
     <>
-      <div className="flex justify-center p-2">
+      <div className="flex justify-center p-2 w-full">
         <Form>
           <Form.Select
             onChange={(val) => {
@@ -133,8 +128,8 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
             options={mapDetails.map((map) => map.id)}
             placeholder="Map"
             value={state.mapID}
-            width="lg"
-            height="xl"
+            width="full"
+            height="md"
           ></Form.Select>
           <div className="h-2"></div>
           {state.mapID !== "init" && (
@@ -148,8 +143,8 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
                 <span className="text-blue-400">add new suburb</span>,
               ]}
               placeholder="Suburb"
-              width="lg"
-              height="xl"
+              width="full"
+              height="md"
             />
           )}
 
@@ -165,12 +160,28 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
                 <span className="text-blue-400">add new street</span>,
               ]}
               placeholder="Street"
-              width="lg"
-              height="xl"
+              width="full"
+              height="md"
             />
           )}
           <div className="h-2"></div>
           <div className="flex">
+            {state.houseNumber === "" ? null : (
+              <>
+                <Form.Alphanumeric
+                  value={state.unitNumber}
+                  label=""
+                  placeholder="Unit"
+                  onChange={(value: string) =>
+                    dispatch({ type: "unitNumber", payload: value })
+                  }
+                  width="sm"
+                  height="md"
+                ></Form.Alphanumeric>
+              </>
+            )}
+            <div className="grow"></div>
+
             {state.street === "init" ? null : (
               <Form.Alphanumeric
                 value={state.houseNumber}
@@ -180,33 +191,23 @@ const AddAddress = ({ mapDetails }: AddAddressType) => {
                   dispatch({ type: "houseNumber", payload: value })
                 }
                 width="sm"
-                height="xl"
-              ></Form.Alphanumeric>
-            )}
-            <div className="grow"></div>
-            {state.houseNumber === "" ? null : (
-              <Form.Alphanumeric
-                value={state.unitNumber}
-                label=""
-                placeholder="Unit"
-                onChange={(value: string) =>
-                  dispatch({ type: "unitNumber", payload: value })
-                }
-                width="xs"
-                height="xl"
+                height="md"
               ></Form.Alphanumeric>
             )}
           </div>
           <div className="h-8"></div>
           <div className="grid gap-4">
             {state.houseNumber === "" ? null : (
-              <Button
-                clickAction={() => setSubmit(true)}
-                width="full"
-                color="blue"
-              >
-                Add
-              </Button>
+              <Center>
+                <Button
+                  clickAction={() => setSubmit(true)}
+                  width="md"
+                  height="md"
+                  color="blue"
+                >
+                  Add
+                </Button>
+              </Center>
             )}
           </div>
         </Form>

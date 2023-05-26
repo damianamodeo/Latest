@@ -1,5 +1,6 @@
 import { AnimatePresence, motion as m } from "framer-motion";
 import { Suspense, useRef, useState } from "react";
+import { useTernaryDarkMode } from "usehooks-ts";
 
 const variants = {
   enter: (direction: "<") => {
@@ -37,9 +38,10 @@ const App = ({ pages }: AppType) => {
     const ref = useRef(null);
     return { currentPage: subpage, setSubpage: setSubpage, ref: ref };
   });
+  const { isDarkMode } = useTernaryDarkMode();
 
   return (
-    <div className={`dark:text-white`}>
+    <div className={` ${isDarkMode && "dark"} dark:text-white`}>
       <div className="">
         {pages.map(({ startPage, subpages }, index) => {
           const Content = subpages[subpage[index].currentPage]?.Content;
@@ -105,7 +107,7 @@ const App = ({ pages }: AppType) => {
           const pageStyle =
             startPage === page
               ? "stroke-blue-700 dark:stroke-blue-400 text-blue-700 dark:text-blue-400"
-              : "stroke-black dark:stroke-white";
+              : "stroke-black dark:stroke-white dark:text-white";
           return (
             <div
               key={index}

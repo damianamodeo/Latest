@@ -1,10 +1,6 @@
 import Header from "../../../../../components/containers/Header";
 
-type HomeHeaderType = {
-  changeSubpage: (newSubpage: string, direction: "<" | ">") => void;
-};
-
-const HomeHeader = ({ changeSubpage }: HomeHeaderType) => {
+const HomeHeader = () => {
   return (
     <Header
       left={null}

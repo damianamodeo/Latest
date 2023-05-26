@@ -19,7 +19,7 @@ const WriteHeader = ({ changeSubpage }: WriteHeaderType) => {
           <div className="my-auto">Back</div>
         </div>
       }
-      center={<div className={``}>Record</div>}
+      center={<div className={``}>Write</div>}
       right={<div></div>}
     ></Header>
   );

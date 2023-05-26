@@ -73,7 +73,7 @@ const TabbedPage = ({ tabItems, color = "blue" }: TabbedPageType) => {
   });
 
   return (
-    <div className="h-full border-4-xxx border-green-500-xxx flex flex-col">
+    <div className="h-full flex flex-col">
       <div
         className={`h-10 hideScollbar tabbar relative flex bg-white dark:bg-neutral-900 w-full touch-auto 
 				overflow-x-auto overflow-y-hidden border border-x-0 border-t-0 border-b-[1.25px] border-y-neutral-500 dark:border-y-neutral-500`}
@@ -85,7 +85,7 @@ const TabbedPage = ({ tabItems, color = "blue" }: TabbedPageType) => {
               ref={tabRefs[key]}
               onClick={(e) => handleClick(e, key)}
               className={`uppercase mx-3 ${
-                active[key] ? `font-extrabold ${colors[color].text}` : ""
+                active[key] ? `font-extrabold ${colors[color].text}` : "dark:text-white"
               }`}
             >
               <div className="my-2 w-max">{item.title}</div>
@@ -101,9 +101,9 @@ const TabbedPage = ({ tabItems, color = "blue" }: TabbedPageType) => {
         ></div>
       </div>
 
-      <div className="h-full relative overflow-y-auto overscroll-x-contain border-4-xxx border-red-500-xxx">
+      <div className="h-full relative overflow-y-auto overscroll-x-contain">
         <div
-          className={`hideScollbar h-full pb-2-xx grid grid-flow-col auto-cols-[100%] overflow-x-auto-xxx snap-x snap-mandatory snap-always overflow-y-auto `}
+          className={`hideScollbar h-full grid grid-flow-col auto-cols-[100%] snap-mandatory snap-x snap-always overflow-y-auto `}
         >
           {tabItems.map((item: any, key: number) => {
             return (

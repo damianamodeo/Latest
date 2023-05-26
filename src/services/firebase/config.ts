@@ -13,6 +13,6 @@ export const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const fdb = getFirestore();
-if (import.meta.env.DEV) { 
-  connectFirestoreEmulator(fdb, "localhost", 8080);
-}
+// if (import.meta.env.DEV) { 
+//   connectFirestoreEmulator(fdb, "localhost", 8080);
+// }

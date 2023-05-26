@@ -60,8 +60,8 @@ const colors: { [index: string]: { text: string; background: string } } = {
     background: "bg-sky-500 dark:bg-sky-200",
   },
   blue: {
-    text: `text-blue-500 dark:text-blue-200`,
-    background: "bg-blue-500 dark:bg-blue-200",
+    text: `text-blue-500 dark:text-blue-400`,
+    background: "bg-blue-500 dark:bg-blue-400",
   },
   darkblue: {
     text: `text-darkblue-500 dark:text-darkblue-200`,

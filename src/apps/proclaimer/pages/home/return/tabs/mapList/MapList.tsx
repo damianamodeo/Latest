@@ -8,13 +8,18 @@ type MapsListType = {
 
 const MapsList = ({ mapNumbers }: MapsListType) => {
 
-  console.log('MapsList >>> mapNumbers:', mapNumbers)
 
-  const [updateModelOpen, setUpdateModelOpen] = useState(false);
-  const [address, setAddress] = useState({});
+  const [address, setAddress] = useState<any>(undefined);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className={``}>
+      
+      <UpdateAddressModal
+        address={address}
+        isOpen={modalOpen}
+        setModalOpen={setModalOpen}
+      ></UpdateAddressModal>
       {mapNumbers
         .filter((address: any) => {
           return address.mapNumber !== undefined;
@@ -25,7 +30,7 @@ const MapsList = ({ mapNumbers }: MapsListType) => {
             <div key={index} className="mx-auto w-full max-w-md p-2">
               <Accordian
                 title={
-                  <div className="p-3 w-full bg-neutral-200 dark:bg-neutral-700  border-black border-[.6px]">
+                  <div className="p-3 w-full bg-neutral-200 dark:bg-neutral-700 text-2xl">
                     {`Map ${item.mapNumber} (${item.total})`}
                   </div>
                 }
@@ -59,12 +64,12 @@ const MapsList = ({ mapNumbers }: MapsListType) => {
                                 <div
                                   onClick={() => {
                                     setAddress(address);
-                                    setUpdateModelOpen(true);
+                                    setModalOpen(true);
                                   }}
-                                  className={`m-1 py-2 rounded text-center ${
+                                  className={`m-1 py-2 rounded text-center dark:text-white ${
                                     address.houseNumber % 2 === 0
-                                      ? "dark:bg-blue-800 bg-blue-300"
-                                      : "dark:bg-green-800 bg-green-300"
+                                    ? "dark:bg-neutral-600 bg-neutral-300"
+                                    : "dark:bg-neutral-800 bg-neutral-400"
                                   }`}
                                 >
                                   {address.unitNumber &&
@@ -79,13 +84,7 @@ const MapsList = ({ mapNumbers }: MapsListType) => {
                   ))}
               </Accordian>
 
-              {updateModelOpen && (
-                <UpdateAddressModal
-                  isOpen={updateModelOpen}
-                  address={address}
-                  setUpdateModelOpen={setUpdateModelOpen}
-                ></UpdateAddressModal>
-              )}
+
             </div>
           );
         })}

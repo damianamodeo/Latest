@@ -28,7 +28,7 @@ const Form = ({ zodSchema, children }: any) => {
     console.log("IT WORKED", data);
   };
   return (
-    <form onSubmit={handleSubmit(submitData)} className="flex flex-col">
+    <form onSubmit={handleSubmit(submitData)} className="flex flex-col w-full">
       {children}
     </form>
   );

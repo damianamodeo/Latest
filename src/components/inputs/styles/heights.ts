@@ -2,12 +2,11 @@
 const heights: { [index: string]: string } = {
   auto: "h-auto",
   full: "h-full",
-  xs: "h-[1.5rem]",
-  sm: "h-[2rem]",
-  md: "h-[2.5rem]",
-  lg: "h-[3rem]",
-  xl: "h-[3.5rem]",
-  "2xl": "h-[4rem]",
+  xs: "text-[0.75rem] p-2",
+  sm: "text-[1rem] p-3",
+  md: "text-[1.3rem] p-3",
+  lg: "text-[1.7rem] p-4",
+  xl: "text-[2.2rem] p-4",
 };
 export type HeightsType = keyof typeof heights
 
